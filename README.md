@@ -94,9 +94,9 @@ When the peaks are less than threshold values, the NPU pulse is generated to tri
 Iverilog and GTKWave are used to simulate and verify the design. I have written a python script to analyze the *.vcd* file using *VCD reader lib* and plot the desired signals using *matplotlib*. Fig .2 shows the signals for the entire ECG signal and Fig .3 shows a focused view of the signals foe a limited segments of the ECG signal.
 The *YOSYS* is used to synthesize the design.
 
-![pt_1](https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_1.jpg)
+![pt_1](https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_1.jpeg)
 
-![pt_3](https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_3.jpg)
+![pt_3](https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_3.jpeg)
 
 ## Chip Design
 *OpenLane* is a free, open-source tools to design a digital chip. It uses *SKY130 PDK*. Both of them are supported by *Efabless* and *Google*. Fig .4 shows the designed chip in *KLayout* software.
