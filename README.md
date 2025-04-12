@@ -84,6 +84,13 @@ If each of the eight most-recent sequential RR intervals that are calculated fro
 Pan-Tompkins algorithm is a real-time and needs a very low memory space. So it is really suitable to implement in a wearable devices which monitors vital signals for a long period of time. Pan and Tompkins implemented the algorithm on a Z80 processor using assembly language. Now, I have implemented it as a whole digital circuit.
 The algorithm has three phases including: *start up*, *learning phase 1*, *learning phase 2* and *detection*. The first state after reset is *start up*. In this state, it waits to find the first peak of MWI which is valid for 200ms. When it takes place, it triggers a timer and goes to learning phase 1. The *learning phase 1* takes 2 second and it finds the maximum value of PEAKI and PEAKF also calculates the mean value of them. They are used to as a reference value to initialize the THRESHOLD I and F. When the timer is overflowed, it goes to the *learning phase 2*. In this state, it finds two successive PEAKI and uses them to calculate RR Interval value. Finally it goes to the *detection* state which is main state to perform thresholding on filtered ECG signal and output of MWI stage. The whole process is shown in Fig.1.
 
+
+<figure>
+  <img src="https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_asic.jpg" alt="Impt_asic">
+  <figcaption>Fig. 1</figcaption>
+</figure>
+
+
 ![pt_asic](https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_asic.jpg)
 
 The control unit manages the overall flow of the algorithm. The four purple boxes show states of the control unit. In the left side of the figure, there are some blocks which implement the linear and nonlinear transforming of ECG signals. The pipeline structure is used to keep the real-time features of the algorithm. Each stage uses a shift register to make an appropriate delay on input signal. The number of registers depends on the formula. Two extra shift registers are used to align the output of high-pass filter and squared with output of MWI.
