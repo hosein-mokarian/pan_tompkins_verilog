@@ -86,12 +86,10 @@ The algorithm has three phases including: *start up*, *learning phase 1*, *learn
 
 
 <figure>
-  <img src="https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_asic.jpg" alt="Impt_asic">
+  <img src="https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_asic.jpg" alt="pt_asic">
   <figcaption>Fig. 1</figcaption>
 </figure>
 
-
-![pt_asic](https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_asic.jpg)
 
 The control unit manages the overall flow of the algorithm. The four purple boxes show states of the control unit. In the left side of the figure, there are some blocks which implement the linear and nonlinear transforming of ECG signals. The pipeline structure is used to keep the real-time features of the algorithm. Each stage uses a shift register to make an appropriate delay on input signal. The number of registers depends on the formula. Two extra shift registers are used to align the output of high-pass filter and squared with output of MWI.
 The whole process is highly depended the PEAKI which is the highest value of the MWI signal for last 200ms. To implement it, a peak detector and a timer are used. The peak detector look for a local peak value. When it is found, the timer starts the counting. It is the valid PEAKI if the timer reaches to the end. In fact, the timer will be rested when a new peak value is found otherwise it generates a pulse at the end of period. The same procedure is used for PEAKF.
@@ -101,12 +99,25 @@ When the peaks are less than threshold values, the NPU pulse is generated to tri
 Iverilog and GTKWave are used to simulate and verify the design. I have written a python script to analyze the *.vcd* file using *VCD reader lib* and plot the desired signals using *matplotlib*. Fig .2 shows the signals for the entire ECG signal and Fig .3 shows a focused view of the signals foe a limited segments of the ECG signal.
 The *YOSYS* is used to synthesize the design.
 
-![pt_1](https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_1.jpeg)
 
-![pt_3](https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_3.jpeg)
+<figure>
+  <img src="https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_1.jpg" alt="pt_1">
+  <figcaption>Fig. 2</figcaption>
+</figure>
+
+
+<figure>
+  <img src="https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_3.jpg" alt="pt_3">
+  <figcaption>Fig. 3</figcaption>
+</figure>
+
 
 ## Chip Design
 *OpenLane* is a free, open-source tools to design a digital chip. It uses *SKY130 PDK*. Both of them are supported by *Efabless* and *Google*. Fig .4 shows the designed chip in *KLayout* software.
 
-![pt_klyout](https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_klayout.jpg)
+
+<figure>
+  <img src="https://github.com/hosein-mokarian/pan_tompkins_verilog/blob/main/figs/pt_klayout.jpg" alt="pt_klayout">
+  <figcaption>Fig. 4</figcaption>
+</figure>
 
